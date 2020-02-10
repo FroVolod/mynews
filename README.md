@@ -19,13 +19,9 @@
     ```
     python manage.py migrate
     ```
-5. Add in "mynews/settings.py":
+5. Rename "mynews/local_settings.py.template" to "mynews/local_settings.py"
+   and replace the placeholder configurations.
 
-    ```
-    MAILGUN_ACCESS_KEY = 'ACCESS-KEY'
-    MAILGUN_SERVER_NAME = 'SERVER-NAME'
-    DEFAULT_FROM_EMAIL = 'postmaster@SERVER-NAME.mailgun.org'
-    ```
 6. Start server:
 
     ```
