@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>
+        My news
+    </title>
+</head>
+<body>
+  
+  <nav class="navbar fixed-top navbar-light bg-primary">
+    <a href="{% url 'publication_list' %}" class="navbar-brand mb-0 h1">My News</a>
+    user: {{ user }}
+    {% if user.is_active %}
+      <a href="{% url 'account_logout' %}" class="btn btn-secondary">Sign out</a>
+      <a href="{% url 'publication_add' %}" class="btn btn-secondary">Add publication</a>
+    {% else %}
+      <a href="{% url 'account_login' %}" class="btn btn-secondary">Sign in</a>
+    {% endif %}    
+  </nav>
+  
+    <div class="container content">
+      {% block content %}
+      {% endblock %}
+    </div>
+</body>
+</html>

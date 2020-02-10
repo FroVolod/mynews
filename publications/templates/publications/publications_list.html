@@ -1,0 +1,19 @@
+{% extends 'publications/base.html' %}
+
+{% block content %}
+  {% for publication in object_list %}
+  <div class="card w-100">
+    <h7 class="card-header">Author: {{ publication.author }}</h7>
+    <div class="card-body">
+      <h3 class="card-title">{{ publication.title | safe }}</h3>    
+      <p class="card-text">
+        {% with pub=publication.title|safe %}
+        {{ pub | truncatechars:200 }}
+        {% endwith %}
+      </p>
+      <a href="{{ publication.slug }}" class="btn btn-primary">More details</a>
+    </div>
+    <h7 class="card-header">Date: {{ publication.date_pub }}</h7>
+  </div>
+  {% endfor %}
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends 'publications/base.html' %}
+
+{% block content %}
+  <div class="card w-100">
+    <p class="card-header">Author: {{ publication.author }}</p>
+    <div class="card-body">
+      <h5 class="card-title">{{ publication.title|safe }}</h5>    
+      <p class="card-text">
+        {{ publication.text|safe }}
+      </p>
+    </div>
+  </div>
+  
+  <div class="comments">
+    <h7>
+      Сomments
+    </h7>
+    <ul>
+      <div class="container">
+      {% for comment in comments %}
+        <li>
+          <div class="card w-100">
+            <div class="row">
+              <div class="card-header col-md-6">
+                <div class="row">User: {{ comment.user }}</div>
+                <div class="row">Date: {{ comment.date }}</div>
+              </div>
+              <div class="col-md-6">
+                <div class="card-body">
+                  <p class="card-text">{{ comment.text }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+      </div>
+    </ul>
+    {% if user.is_active %}
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Send</button>
+    </form>
+    {% else %}
+      <h7>Sign in to add comments</h7>
+    {% endif %}
+  </div>
+  
+{% endblock content %}
