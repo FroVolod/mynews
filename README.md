@@ -9,15 +9,15 @@
     cd "C:\path\to\the\project\folder"
     pip install -r requirements.txt
     ```
-3. Create "superuser":
-
-    ```
-    python manage.py createsuperuser
-    ```
-4. Apply migrate:
+3. Apply migrate:
 
     ```
     python manage.py migrate
+    ```
+4. Create "superuser":
+
+    ```
+    python manage.py createsuperuser
     ```
 5. Rename "mynews/local_settings.py.template" to "mynews/local_settings.py"
    and replace the placeholder configurations.
