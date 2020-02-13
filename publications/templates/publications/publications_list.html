@@ -7,7 +7,7 @@
     <div class="card-body">
       <h3 class="card-title">{{ publication.title | safe }}</h3>    
       <p class="card-text">
-        {% with pub=publication.title|safe %}
+        {% with pub=publication.text|safe %}
         {{ pub | truncatechars:200 }}
         {% endwith %}
       </p>

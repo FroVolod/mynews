@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    'djcelery_email',
+
     'django_summernote',
 
     'publications',
@@ -149,8 +151,18 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
-EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+ACCOUNT_FORMS = {'signup': 'publications.forms.MyCustomSignupForm'}
+
+CELERY_EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 try:
     from .local_settings import *
 except ImportError:
     pass
+
+# REDIS related settings 
+REDIS_HOST = 'localhost'
+REDIS_PORT = '6379'
+BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600} 
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'

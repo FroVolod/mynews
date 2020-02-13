@@ -1,9 +1,9 @@
-from django.shortcuts import get_object_or_404, reverse, redirect
-from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
 
 from publications.models import Publication, Comment
 from publications.forms import CommentForm, PublicationCreateForm
+from publications.tasks import send_email_to_author
 
 
 class PublicationListView(ListView):
@@ -44,6 +44,7 @@ class PublicationDetailView(DetailView, CreateView):
         form.instance.user = self.request.user
         form.instance.publication = object
         form.save()
+        send_email_to_author.delay(object.author.email, object.title)
         return redirect('publication_details', object.slug)
 
 class PublicationAdd(CreateView):

@@ -22,7 +22,18 @@
 5. Rename "mynews/local_settings.py.template" to "mynews/local_settings.py"
    and replace the placeholder configurations.
 
-6. Start server:
+6. Install and run redis. You can use docker:
+
+    ```
+    docker run --name mynews-redis --publish 6379:6379 -d redis:alpine
+    ```
+7. Run celery worker in new terminal:
+
+    ```
+    cd "C:\path\to\the\project\folder"
+    celery worker -A mynews
+    ```
+8. Start server:
 
     ```
     python manage.py runserver
