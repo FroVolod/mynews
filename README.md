@@ -9,19 +9,19 @@
     cd "C:\path\to\the\project\folder"
     pip install -r requirements.txt
     ```
-3. Apply migrate:
+3. Rename "mynews/local_settings.py.template" to "mynews/local_settings.py"
+   and replace the placeholder configurations.
+
+4. Apply migrate:
 
     ```
     python manage.py migrate
     ```
-4. Create "superuser":
+5. Create "superuser":
 
     ```
     python manage.py createsuperuser
     ```
-5. Rename "mynews/local_settings.py.template" to "mynews/local_settings.py"
-   and replace the placeholder configurations.
-
 6. Install and run redis. You can use docker:
 
     ```
