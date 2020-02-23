@@ -18,7 +18,7 @@ class Publication(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     text = models.TextField(blank=True)
-    moderation_status = models.IntegerField(choices=MODERATION_STATUS_CHOICE, default=1)
+    moderation_status = models.IntegerField(choices=MODERATION_STATUS_CHOICE, default=MODERATION_STATUS_DRAFT)
     date_create = models.DateTimeField(auto_now_add=True)
     date_pub = models.DateTimeField(auto_now=True)
     slug = models.SlugField(max_length=100, editable=True, blank=True)
