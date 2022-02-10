@@ -1,7 +1,7 @@
 awesome-slugify==1.6.5
 redis
 celery[redis]==4.4.0
-Django==2.2.8
+Django==2.2.27
 django-allauth==0.41.0
 django-mailgun==0.9.1
 django-summernote==0.8.11.6
